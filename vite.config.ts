@@ -18,8 +18,9 @@ export default defineConfig({
             },
         }),
         tailwindcss(),
-        wayfinder({
-            formVariants: true,
-        }),
-    ],
+        // Hanya jalankan wayfinder di lokal, skip di Vercel
+        process.env.VERCEL !== '1'
+            ? wayfinder({ formVariants: true })
+            : null,
+    ].filter(Boolean),
 });
