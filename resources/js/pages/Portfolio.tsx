@@ -294,7 +294,7 @@ export default function Portfolio({ hero, introduction, about, skills, projects,
     };
 
     return (
-        <div className="min-h-screen bg-white text-black snap-y snap-mandatory overflow-y-scroll h-screen">
+        <div className="min-h-screen bg-white text-black snap-y snap-mandatory overflow-y-scroll h-screen" id="main-container">
             {/* Progress Bar - Neutral Gray */}
             <motion.div
                 className="fixed top-0 left-0 right-0 h-1 bg-gray-300 origin-left z-50"
@@ -309,41 +309,25 @@ export default function Portfolio({ hero, introduction, about, skills, projects,
                         animate={{ opacity: 1, y: 0 }}
                         className="flex justify-center items-center gap-16"
                     >
-                        <motion.a
-                            href="#about"
-                            whileHover={{ scale: 1.05 }}
-                            className={`${menuColorClass} transition-colors text-sm font-medium tracking-wide`}
-                        >
-                            About
-                        </motion.a>
-                        <motion.a
-                            href="#skills"
-                            whileHover={{ scale: 1.05 }}
-                            className={`${menuColorClass} transition-colors text-sm font-medium tracking-wide`}
-                        >
-                            Skills
-                        </motion.a>
-                        <motion.a
-                            href="#projects"
-                            whileHover={{ scale: 1.05 }}
-                            className={`${menuColorClass} transition-colors text-sm font-medium tracking-wide`}
-                        >
-                            Projects
-                        </motion.a>
-                        <motion.a
-                            href="#experience"
-                            whileHover={{ scale: 1.05 }}
-                            className={`${menuColorClass} transition-colors text-sm font-medium tracking-wide`}
-                        >
-                            Experience
-                        </motion.a>
-                        <motion.a
-                            href="#contact"
-                            whileHover={{ scale: 1.05 }}
-                            className={`${menuColorClass} transition-colors text-sm font-medium tracking-wide`}
-                        >
-                            Contact
-                        </motion.a>
+                        {[
+                            { label: 'About', id: 'about' },
+                            { label: 'Skills', id: 'skills' },
+                            { label: 'Projects', id: 'projects' },
+                            { label: 'Experience', id: 'experience' },
+                            { label: 'Contact', id: 'contact' },
+                        ].map(({ label, id }) => (
+                            <motion.button
+                                key={id}
+                                onClick={() => {
+                                    const el = document.getElementById(id);
+                                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                }}
+                                whileHover={{ scale: 1.05 }}
+                                className={`${menuColorClass} transition-colors text-sm font-medium tracking-wide cursor-pointer bg-transparent border-none`}
+                            >
+                                {label}
+                            </motion.button>
+                        ))}
                     </motion.div>
                 </div>
             </nav>
@@ -426,7 +410,7 @@ export default function Portfolio({ hero, introduction, about, skills, projects,
                                     <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
                                         <Calculator className="text-blue-600" size={24} />
                                     </div>
-                                    <span className="text-sm text-gray-600 font-medium">Finance Expert</span>
+                                    <span className="text-sm text-gray-600 font-medium">Accounting Learner</span>
                                 </div>
                                 
                                 <div className="text-2xl text-gray-300">+</div>
